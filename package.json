@@ -34,6 +34,7 @@
   "dependencies": {
     "@webpack-blocks/sass": "^0.3.0",
     "bulma": "^0.3.0",
+    "lodash": "^4.17.4",
     "ytdl-core": "^0.7.21"
   }
 }

@@ -2549,6 +2549,10 @@ lodash.restparam@^3.0.0:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
 
+lodash.throttle@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+
 lodash.toplainobject@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash.toplainobject/-/lodash.toplainobject-3.0.0.tgz#28790ad942d293d78aa663a07ecf7f52ca04198d"
@@ -3521,11 +3525,22 @@ react-hot-loader@^3.0.0-beta.5:
     redbox-react "^1.2.5"
     source-map "^0.4.4"
 
+react-image-gallery@^0.7.12:
+  version "0.7.12"
+  resolved "https://registry.yarnpkg.com/react-image-gallery/-/react-image-gallery-0.7.12.tgz#52312d31f6c4374adc295e86ef4df518481ae211"
+  dependencies:
+    lodash.throttle "^4.1.1"
+    react-swipeable "^3.5.1"
+
 react-proxy@^3.0.0-alpha.0:
   version "3.0.0-alpha.1"
   resolved "https://registry.yarnpkg.com/react-proxy/-/react-proxy-3.0.0-alpha.1.tgz#4400426bcfa80caa6724c7755695315209fa4b07"
   dependencies:
     lodash "^4.6.1"
+
+react-swipeable@^3.5.1:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-3.9.1.tgz#d2039939e11fe0de4ab5545190db8f8c646111e8"
 
 react@^15.3.2:
   version "15.4.2"

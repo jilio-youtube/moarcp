@@ -3,11 +3,13 @@ import "bulma";
 import fs from "fs";
 import ytdl from "ytdl-core";
 import _ from "lodash";
+import "react-image-gallery/styles/scss/image-gallery-no-icon.scss";
+import ImageGallery from "react-image-gallery";
 
 class App extends Component {
   constructor() {
     super();
-    this.state = { url: "", preview: "", busy: false };
+    this.state = { url: "", busy: false, images: [] };
   }
 
   render() {
@@ -25,9 +27,7 @@ class App extends Component {
             🐻 ✊ 💃
           </a>
         </p>
-        <figure class="image is-16by9">
-          <img src={this.state.preview} />
-        </figure>
+        <ImageGallery items={this.state.images} slideInterval={2000} />
       </div>
     );
   }
@@ -39,7 +39,15 @@ class App extends Component {
   downloadCP() {
     this.setState({ busy: true });
     ytdl.getInfo(this.state.url, (err, info) => {
-      this.setState({ preview: _.get(info, "iurlhq", ""), busy: false });
+      const original = _.get(info, "iurlmaxres", "");
+      const thumbnail = _.get(info, "iurlhq", "");
+      const sizes = { width: 640, height: 360 };
+      const images = _.uniqBy(
+        [ ...this.state.images, { original, thumbnail, sizes } ],
+        "original"
+      );
+
+      this.setState({ images, busy: false });
     });
   }
 }

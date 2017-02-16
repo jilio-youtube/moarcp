@@ -27,7 +27,10 @@ class App extends Component {
             🐻 ✊ 💃
           </a>
         </p>
-        <ImageGallery items={this.state.images} slideInterval={2000} />
+        <ImageGallery
+          items={this.state.images}
+          renderItem={this.renderVideo.bind(this)}
+        />
       </div>
     );
   }
@@ -41,14 +44,22 @@ class App extends Component {
     ytdl.getInfo(this.state.url, (err, info) => {
       const original = _.get(info, "iurlmaxres", "");
       const thumbnail = _.get(info, "iurlhq", "");
-      const sizes = { width: 640, height: 360 };
+      const url = this.state.url;
+      const path = original.replace(/[/:]/g, "") + ".mp4";
       const images = _.uniqBy(
-        [ ...this.state.images, { original, thumbnail, sizes } ],
+        [ ...this.state.images, { original, thumbnail, path, url } ],
         "original"
       );
 
+      ytdl
+        .downloadFromInfo(info, { format: "mp4" })
+        .pipe(fs.createWriteStream(path));
       this.setState({ images, busy: false });
     });
+  }
+
+  renderVideo(video) {
+    return <video src={video.path} controls />;
   }
 }
 
